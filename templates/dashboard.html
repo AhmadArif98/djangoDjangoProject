@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Dashboard</title>{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-center">
+        <div>
+            <h2>dashboard page</h2>
+            <p>This is my dashboard page</p>
+            {% for group_for in request.user.groups.all %}
+                you are a <b>{{ group_for.name }}</b>
+                <br/>
+                {% if group_for.name == 'super_user' %}
+                    <div><b><i>all users</i></b></div>
+                    {% for user in users %}
+                        <div>{{ user }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            <br/>
+            <a href="/logout">logout</a>
+        </div>
+    </div>
+{% endblock %}
